@@ -16,58 +16,34 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity: AppCompatActivity(), View.OnTouchListener, View.OnDragListener {
 
-    var mainscreenid=0
     var c=0
     private val TAG = MainActivity::class.java.simpleName
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        createLayout()
-//        btnadd.setOnClickListener {
-//            addTV()
-//            c++
-//        }
-        setListeners()
+        btnadd.setOnClickListener {
+            addTV()
+            c++
+        }
     }
 
     private fun addTV()
     {
         val tv=TextView(this)
-        tv.text="hi"
-        var tvid = resources.getIdentifier("tv${c}", "id", packageName)
-        val mainscreen=findViewById<LinearLayout>(mainscreenid)
-        mainscreen.addView(tv)
+        tv.text=""
+        tv.setBackground(ContextCompat.getDrawable(this, R.drawable.circle));
+        ll_pinklayout.addView(tv)
         tv.setOnTouchListener(this)
         ll_pinklayout.setOnDragListener(this)
     }
-    private fun createLayout()
-    {
-        var screenid = resources.getIdentifier("screen", "id", packageName)
-        val screen=findViewById<LinearLayout>(screenid)
 
-        val mainscreen = RelativeLayout(this)
-        mainscreen.layoutParams = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            LinearLayout.LayoutParams.MATCH_PARENT
-        )
-         mainscreenid = resources.getIdentifier("mainscreen", "id", packageName)
-        mainscreen.id=mainscreenid
-        screen.addView(mainscreen)
-    }
-
-    private fun setListeners() {
-        tv_dropdrop.setOnTouchListener(this)
-        //ll_pinklayout.setOnDragListener(this)
-        tv_drop.setOnTouchListener(this)
-
-        ll_pinklayout.setOnDragListener(this)
-    }
     override fun onDrag(view:View, dragEvent: DragEvent):Boolean {
         Log.d(TAG, "onDrag: view->$view\n DragEvent$dragEvent")
         when (dragEvent.action) {
