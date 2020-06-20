@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/screen"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:id="@+id/ll_pinklayout"
+        android:background="#FF8989">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_dropdrop"
+            android:text=""
+            android:textSize="30sp"
+            android:background="@drawable/circle"
+            android:textColor="#000000"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_drop"
+            android:text=""
+            android:layout_marginTop="50dp"
+            android:textSize="30sp"
+            android:background="@drawable/circle"
+            android:textColor="#000000"/>
+    </RelativeLayout>
+    <Button
+        android:id="@+id/btnadd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ADD A NODE"
+        android:layout_marginTop="610dp"
+        android:layout_marginLeft="150dp"/>
+
+</RelativeLayout>
