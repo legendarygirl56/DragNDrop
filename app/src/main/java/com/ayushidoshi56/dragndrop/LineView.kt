@@ -20,8 +20,8 @@ class LineView : View {
     var pointA:PointF= PointF(10f,10f)
     var pointB:PointF=PointF(10f,10f)
     override fun onDraw(canvas: Canvas?) {
-        paint.setColor(Color.RED)
-        paint.strokeWidth=20f
+        paint.setColor(Color.BLACK)
+        paint.strokeWidth=10f
         if (canvas != null) {
             canvas.drawLine(pointA.x,pointA.y,pointB.x,pointB.y,paint)
         }

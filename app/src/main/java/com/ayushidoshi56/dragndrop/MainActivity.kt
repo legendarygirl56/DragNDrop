@@ -10,11 +10,10 @@ import android.view.DragEvent
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.RelativeLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -52,9 +51,16 @@ class MainActivity: AppCompatActivity(), View.OnTouchListener, View.OnDragListen
 
     private fun addTV()
     {
-        val tv=TextView(this)
-        tv.text=""
-        tv.setBackground(ContextCompat.getDrawable(this, R.drawable.circle));
+        val tv=ImageView(this)
+        tv.setImageDrawable(resources.getDrawable(R.drawable.ic_circle_vol_1circle))
+        val lp = RelativeLayout.LayoutParams(
+            RelativeLayout.LayoutParams.MATCH_PARENT,
+            RelativeLayout.LayoutParams.MATCH_PARENT
+        )
+        lp.width = 100;
+        lp.height = 100;
+        tv.setLayoutParams(lp)
+        //tv.setBackground(ContextCompat.getDrawable(this, R.drawable.circle));
         ll_pinklayout.addView(tv)
         tv.setOnTouchListener(this)
         tv.x=lastNodePoint.x+100f
@@ -77,6 +83,7 @@ class MainActivity: AppCompatActivity(), View.OnTouchListener, View.OnDragListen
                 mLineView=lvLine
                 mLineView.pointA=pointA
                 mLineView.pointB=pointB
+                mLineView.elevation=100f
                 mLineView.draw()
                 state=0
             }
