@@ -1,31 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     android:id="@+id/screen"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+    <Button
+        android:id="@+id/btnadd"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="ADD A NODE" />
+    <Button
+        android:id="@+id/btnline"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="ADD A line"/>
+    </LinearLayout>
     <RelativeLayout
         android:id="@+id/ll_pinklayout"
         android:layout_width="match_parent"
-        android:layout_height="600dp"
-        android:background="#FF8989">
+        android:layout_height="0dp"
+        android:background="#FF8989"
+        android:layout_weight="12">
 
 
     </RelativeLayout>
-    <Button
-        android:id="@+id/btnadd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ADD A NODE"
-        android:layout_marginTop="610dp"
-        android:layout_marginLeft="150dp"/>
-    <Button
-        android:id="@+id/btnline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ADD A line"
-        android:layout_marginTop="610dp"
-        android:layout_marginLeft="150dp"
-        android:layout_alignLeft="@id/btnadd"/>
 
-</RelativeLayout>
+</LinearLayout>

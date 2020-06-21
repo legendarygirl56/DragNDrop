@@ -1,5 +1,6 @@
 package com.ayushidoshi56.dragndrop
 
+import android.app.PendingIntent.getActivity
 import android.content.Context
 import android.graphics.PointF
 import android.os.Bundle
@@ -9,11 +10,16 @@ import android.view.DragEvent
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import org.w3c.dom.Text
 
 
 class MainActivity: AppCompatActivity(), View.OnTouchListener, View.OnDragListener {
@@ -24,7 +30,8 @@ class MainActivity: AppCompatActivity(), View.OnTouchListener, View.OnDragListen
     var state=0
     var clickstate=0
     private val TAG = "LINER"
-    //val x = parent.getSystemService(Context.VIBRATOR_SERVICE)
+    var lastNodePoint=PointF(0f,0f)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -50,10 +57,14 @@ class MainActivity: AppCompatActivity(), View.OnTouchListener, View.OnDragListen
         tv.setBackground(ContextCompat.getDrawable(this, R.drawable.circle));
         ll_pinklayout.addView(tv)
         tv.setOnTouchListener(this)
-
+        tv.x=lastNodePoint.x+100f
+        tv.y=lastNodePoint.y+100f
         ll_pinklayout.setOnDragListener(this)
         tv.setOnLongClickListener {
-            //x.vibrate(2000)
+            GlobalScope.launch(Dispatchers.IO) {
+                val x = this@MainActivity.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+                x.vibrate(500)
+            }
             if(state==0){
                 pointA=PointF(tv.x+(tv.width/2),tv.y+(tv.height/2))
                 state=1
@@ -105,8 +116,9 @@ class MainActivity: AppCompatActivity(), View.OnTouchListener, View.OnDragListen
                 val container = view as RelativeLayout
                 //container.addView(tvState)
                // tvParent.removeView(tvState)
-                tvState.x = dragEvent.x
-                tvState.y = dragEvent.y
+                tvState.x = dragEvent.x-(tvState.width/2)
+                tvState.y = dragEvent.y-(tvState.height/2)
+                lastNodePoint= PointF(dragEvent.x-(tvState.width/2),dragEvent.y-(tvState.height/2))
                 view.addView(tvState)
                 view.setVisibility(View.VISIBLE)
                 return true
