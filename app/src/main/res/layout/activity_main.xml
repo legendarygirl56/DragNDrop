@@ -10,6 +10,7 @@
         android:layout_height="600dp"
         android:background="#FF8989">
 
+
     </RelativeLayout>
     <Button
         android:id="@+id/btnadd"
@@ -18,5 +19,13 @@
         android:text="ADD A NODE"
         android:layout_marginTop="610dp"
         android:layout_marginLeft="150dp"/>
+    <Button
+        android:id="@+id/btnline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ADD A line"
+        android:layout_marginTop="610dp"
+        android:layout_marginLeft="150dp"
+        android:layout_alignLeft="@id/btnadd"/>
 
 </RelativeLayout>
